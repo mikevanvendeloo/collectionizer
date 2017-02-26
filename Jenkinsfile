@@ -1,9 +1,9 @@
 #!/usr/bin/env groovy
-@Library('jenkins2-pipeline-library@master')
+@Library('jenkins2-pipeline-library@master') _
 
 node {
    def mvnHome
-   stage('Preparation') { // for display purposes
+   stage('Checkout') {
       git 'https://github.com/mikevanvendeloo/collectionizer.git'
       echo getCommitId()
       mvnHome = tool 'M3'

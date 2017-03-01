@@ -5,6 +5,7 @@ node {
    def mvnHome
    stage('Checkout') {
       git 'https://github.com/mikevanvendeloo/collectionizer.git'
+
       echo getCommitId()
       mvnHome = tool 'M3'
    }
@@ -20,4 +21,8 @@ node {
       junit '**/target/surefire-reports/TEST-*.xml'
       archive 'target/*.jar'
    }
+}
+
+def getCommitId() {
+    return sh(script: 'git rev-parse --short HEAD', returnStdout: true)?.trim()
 }

@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
-@Library('jenkins2-pipeline-library@master') _
-
+@Library('jenkins2-pipeline-library')
+import vanvendeloo.jenkins.*
 node {
    def mvnHome
    stage('Checkout') {
@@ -21,8 +21,4 @@ node {
       junit '**/target/surefire-reports/TEST-*.xml'
       archive 'target/*.jar'
    }
-}
-
-def getCommitId() {
-    return sh(script: 'git rev-parse --short HEAD', returnStdout: true)?.trim()
 }

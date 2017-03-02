@@ -9,8 +9,11 @@ node {
 
    stage('Checkout') {
       git 'https://github.com/mikevanvendeloo/collectionizer.git'
-      def commitId = getCommitId()
+      echo gitCommitId()
+
+      def commitId = new PipelineTools().getCommitId()
       echo "commitId: ${commitId}"
+
       mvnHome = tool 'M3'
    }
    stage('Build') {

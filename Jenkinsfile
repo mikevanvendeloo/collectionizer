@@ -1,14 +1,17 @@
 #!/usr/bin/env groovy
 @Library('jenkins2-pipeline-library')
 import vanvendeloo.jenkins.*
+
+
 node {
    def mvnHome
 
-   def pipelineTools = new pipelineTools()
+   def pipeline = load('PipelineTools.groovy')
+
    stage('Checkout') {
       git 'https://github.com/mikevanvendeloo/collectionizer.git'
-
-      echo pipelineTools.getCommitId()
+      def commitId = pipeline.getCommitId()
+      echo "commitId: ${commitId}"
       mvnHome = tool 'M3'
    }
    stage('Build') {

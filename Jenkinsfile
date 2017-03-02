@@ -3,10 +3,12 @@
 import vanvendeloo.jenkins.*
 node {
    def mvnHome
+
+   def pipelineTools = new pipelineTools()
    stage('Checkout') {
       git 'https://github.com/mikevanvendeloo/collectionizer.git'
 
-      echo getCommitId()
+      echo pipelineTools.getCommitId()
       mvnHome = tool 'M3'
    }
    stage('Build') {

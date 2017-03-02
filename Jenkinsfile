@@ -6,11 +6,10 @@ import vanvendeloo.jenkins.*
 node {
    def mvnHome
 
-   def pipeline = load('PipelineTools.groovy')
 
    stage('Checkout') {
       git 'https://github.com/mikevanvendeloo/collectionizer.git'
-      def commitId = pipeline.getCommitId()
+      def commitId = getCommitId()
       echo "commitId: ${commitId}"
       mvnHome = tool 'M3'
    }

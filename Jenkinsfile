@@ -6,14 +6,11 @@ import vanvendeloo.jenkins.*
 node {
    def mvnHome
 
-
    stage('Checkout') {
       git 'https://github.com/mikevanvendeloo/collectionizer.git'
       echo gitCommitId()
-
-      def commitId = new PipelineTools().getCommitId()
-      echo "commitId: ${commitId}"
-
+      echo currentVersionString()
+      echo extractPomVersion()
       mvnHome = tool 'M3'
    }
    stage('Build') {
